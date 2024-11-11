@@ -4,7 +4,7 @@ import cors from 'cors';
 
 // Criando o servidor Express
 const app = express();
-const port = 3000;
+//const port = 3000;
 
 // Middleware para processar requisições com JSON no corpo
 app.use(express.json());
@@ -45,9 +45,10 @@ app.post('/dados', (req, res) => {
 });
 
 // Iniciando o servidor local
-
+/*
 app.listen(port, () => {
   console.log(`API rodando localmente em http://localhost:${port}`);
 });
-
+*/
+export default app;
 
