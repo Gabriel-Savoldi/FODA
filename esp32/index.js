@@ -27,19 +27,20 @@ app.get('/', (req, res) => {
 
 // Rota para "/dados" (receber dados via POST)
 app.post('/dados', (req, res) => {
-  // Recebendo os dados enviados
-  const { temperatura, ph } = req.body;
+  // Recebendo os dados enviados no corpo da requisição
+  const { temperatura, ph, turbidez } = req.body;
 
-  // Verificando se os dados foram enviados corretamente
-  if (temperatura && ph) {
-    // Exibindo os dados recebidos na resposta
+  // Verificando se todos os dados necessários foram enviados
+  if (temperatura && ph && turbidez !== undefined) {
+    // Exibindo os dados recebidos na resposta HTML
     res.status(200).send(`
       <h1>Dados Recebidos</h1>
       <p><strong>Temperatura:</strong> ${temperatura}°C</p>
       <p><strong>pH:</strong> ${ph}</p>
+      <p><strong>Turbidez:</strong> ${turbidez}</p>
     `);
   } else {
-    // Se faltarem dados, respondemos com erro 400
+    // Se faltar algum dado, respondemos com erro 400
     res.status(400).json({ error: 'Dados faltando' });
   }
 });
