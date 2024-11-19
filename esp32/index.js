@@ -17,18 +17,22 @@ app.use(cors({
     "Access-Control-Allow-Origin":'*'
 }));
 
-
-
-
 // Rota padrão ("/")
 app.get('/', (req, res) => {
-  res.status(200).send("API rodando corretamente");
+  res.status(200).send(`
+    <h1>API rodando corretamente</h1>
+    <h1>Dados Recebidos</h1>
+    <p><strong>Temperatura:</strong> ${temperatura}°C</p>
+    <p><strong>pH:</strong> ${ph}</p>
+    <p><strong>Turbidez:</strong> ${turbidez}</p>
+  `);
 });
 
 // Rota para "/dados" (receber dados via POST)
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
   const { temperatura, ph, turbidez } = req.body;
+  
 
   // Verificando se todos os dados necessários foram enviados
   if (temperatura && ph && turbidez !== undefined) {
