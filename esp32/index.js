@@ -27,12 +27,12 @@ app.get('/', (req, res) => {
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
   
-  const { Dado } = req.body;
+  const { Turbidez } = req.body;
   // Verificando se todos os dados necessários foram enviados
-  if (Dado !== undefined) {
+  if (Turbidez !== undefined) {
     // Exibindo os dados recebidos na resposta HTML
     res.status(200).send(`
-      <p><strong>DADO:</strong> ${Dado}</p>
+      <p><strong>DADO:</strong> ${Turbidez}</p>
     `);
   } else {
     // Se faltar algum dado, respondemos com erro 400
