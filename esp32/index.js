@@ -4,17 +4,14 @@ import cors from 'cors';
 
 // Criando o servidor Express
 const app = express();
-//const port = 3000;
 
 // Middleware para processar requisições com JSON no corpo
-app.use(express.json());
+app.use(express.json()); // Permite que o Express entenda JSON no corpo da requisição
 
-
-
-
+// Ativar CORS para permitir requisições de qualquer origem
 app.use(cors({
-    "origin":"*",
-    "Access-Control-Allow-Origin":'*'
+  origin: '*', // Permite qualquer origem
+  "Access-Control-Allow-Origin": "*"
 }));
 
 // Rota padrão ("/")
@@ -23,16 +20,23 @@ app.get('/', (req, res) => {
 });
 
 
+
+
 // Rota para "/dados" (receber dados via POST)
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
-  
-  const { Turbidez } = req.body;
+  const { pH, Temperatura, Turbidez } = req.body;
+
   // Verificando se todos os dados necessários foram enviados
-  if (Turbidez !== undefined) {
-    // Exibindo os dados recebidos na resposta HTML
+  if (pH !== undefined && Temperatura !== undefined && Turbidez !== undefined) {
+    // Exibindo os dados recebidos
+    console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${Temperatura} C, Turbidez = ${Turbidez}`);
+    
+    // Respondendo com os dados recebidos em formato HTML
     res.status(200).send(`
-      <p><strong>DADO:</strong> ${Turbidez}</p>
+      <p><strong>pH:</strong> ${pH}</p>
+      <p><strong>Temperatura:</strong> ${Temperatura} C</p>
+      <p><strong>Turbidez:</strong> ${Turbidez}</p>
     `);
   } else {
     // Se faltar algum dado, respondemos com erro 400
@@ -40,11 +44,10 @@ app.post('/dados', (req, res) => {
   }
 });
 
-// Iniciando o servidor local
-/*
+// Iniciando o servidor
+const port = process.env.PORT || 3000; // Usa a porta configurada no ambiente ou a 3000 por padrão
 app.listen(port, () => {
   console.log(`API rodando localmente em http://localhost:${port}`);
 });
-*/
-export default app;
 
+export default app;
