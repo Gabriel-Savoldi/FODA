@@ -45,9 +45,10 @@ app.post('/dados', (req, res) => {
 });
 
 // Iniciando o servidor
+/*
 const port = process.env.PORT || 3000; // Usa a porta configurada no ambiente ou a 3000 por padrão
 app.listen(port, () => {
   console.log(`API rodando localmente em http://localhost:${port}`);
-});
+});*/
 
 export default app;
