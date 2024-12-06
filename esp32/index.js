@@ -1,7 +1,7 @@
 // Importando o Express e o body-parser
 import express from 'express';
 import cors from 'cors';
-
+import { gravarDados } from '../servicoBackend';
 // Criando o servidor Express
 const app = express();
 
@@ -26,18 +26,43 @@ app.get('/', (req, res) => {
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
   const { pH, Temperatura, Turbidez } = req.body;
-
+  let dados= {};
   // Verificando se todos os dados necessários foram enviados
   if (pH !== undefined && Temperatura !== undefined && Turbidez !== undefined) {
+
+    const data = new Date();
+    dados=
+    {
+      "id":0,
+      "data":data,
+      "pH":pH,
+      "turbidez":Turbidez,
+      "temperatura":Temperatura
+    }
+    
+
+
+    
     // Exibindo os dados recebidos
     console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${Temperatura} C, Turbidez = ${Turbidez}`);
-    
+    try{
+      const resposta = gravarDados(dados);
+      console.log(`Resposta: ${resposta.status}
+        Mensagem:${resposta.mensagem}
+        `)
+
+    }catch(erro){
+      console.log(`Resposta: ${resposta.status}
+        Mensagem:${erro.menssage}
+        `)
+    }
     // Respondendo com os dados recebidos em formato HTML
     res.status(200).send(`
       <p><strong>pH:</strong> ${pH}</p>
       <p><strong>Temperatura:</strong> ${Temperatura} C</p>
       <p><strong>Turbidez:</strong> ${Turbidez}</p>
     `);
+
   } else {
     // Se faltar algum dado, respondemos com erro 400
     res.status(400).json({ error: 'Dados faltando' });
