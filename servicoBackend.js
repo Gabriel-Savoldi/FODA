@@ -7,7 +7,7 @@ export async function gravarDados(dados){
         'headers': { 
             'Content-Type':"application/json"
         },
-        'body': JSON.stringify(produto)
+        'body': JSON.stringify(dados)
     });
     const resultado = await resposta.json();
     return resultado;
