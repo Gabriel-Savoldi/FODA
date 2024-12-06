@@ -1,7 +1,7 @@
 // Importando o Express e o body-parser
 import express from 'express';
 import cors from 'cors';
-import { gravarDados } from '../servicoBackend';
+import gravarDados from "../servicoBackend.js";
 // Criando o servidor Express
 const app = express();
 
@@ -42,7 +42,7 @@ app.post('/dados', (req, res) => {
     
 
 
-    
+
     // Exibindo os dados recebidos
     console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${Temperatura} C, Turbidez = ${Turbidez}`);
     try{
