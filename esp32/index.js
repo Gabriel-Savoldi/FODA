@@ -43,8 +43,11 @@ function obterDataAtual() {
   // Subtrair 10 dias
   dataAtual.setDate(dia - 10); // Subtrai 10 dias da data
 
+
+  dataAtual.setDate(mes + 1);
+
   // Adicionar 15 anos
-  dataAtual.setFullYear(ano + 15); // Adiciona 15 anos à data
+  dataAtual.setFullYear(ano + 10); // Adiciona 15 anos à data
 
   // Atualizar as partes da data após as modificações
   const novoDia = String(dataAtual.getDate()).padStart(2, '0'); // Recupera o novo dia
