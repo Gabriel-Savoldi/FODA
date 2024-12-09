@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   res.status(200).send(`<h1>API rodando corretamente</h1>`);
 });
 
-/*function obterDataAtual() {
+function obterDataAtual() {
   const dataAtual = new Date();
 
   // Usando Intl.DateTimeFormat com o fuso horário correto
@@ -60,24 +60,6 @@ app.get('/', (req, res) => {
   return `${novoAno}-${novoMes}-${novoDia}`;
 }*/
 
-function obterDataAtual() {
-  const dataAtual = new Date();
-
-  // Formatar a data no fuso horário de São Paulo sem problemas de conversão
-  const dataFormatada = new Intl.DateTimeFormat('pt-BR', { 
-    timeZone: 'America/Sao_Paulo', 
-    day: '2-digit', 
-    month: '2-digit', 
-    year: 'numeric' 
-  }).format(dataAtual);
-
-  // A data formatada será no formato "dd/mm/yyyy"
-  const [dia, mes, ano] = dataFormatada.split('/');
-
-  // Retorna a data no formato "yyyy-mm-dd"
-  return `${ano}-${mes}-${dia}`;
-}
-
 
 app.post('/dados', async (req, res) => {
   const { id, pH, temperatura, turbidez } = req.body;
@@ -85,7 +67,8 @@ app.post('/dados', async (req, res) => {
   let dados = {};
   // Validando se todos os dados foram enviados
   if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
-    const data = obterDataAtual();
+    const data = new Date();
+    data = data.toLocaleDateString();
     
     dados = {
       id,
