@@ -64,7 +64,7 @@ function obterDataAtual() {
   const dataAtual = new Date();
   
   // Ajustando para o fuso horário de São Paulo
-  const fusoHorarioSP = new Date(dataAtual.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+  const fusoHorarioSP = new Date(dataAtual.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }));
 
   const dia = String(fusoHorarioSP.getDate()).padStart(2, '0'); // Dia do mês
   const mes = String(fusoHorarioSP.getMonth() + 1).padStart(2, '0'); // Mês (1-12), ajustando porque getMonth() retorna de 0 a 11
