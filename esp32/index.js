@@ -73,67 +73,6 @@ app.post('/dados', async (req, res) => {
 });
 
 // Rota para "/dados" (receber dados via POST)
-/*app.post('/dados', (req, res) => {
-  // Recebendo os dados enviados no corpo da requisição
-  const id = req.body.id;
-  const pH = req.body.pH;
-  const temperatura = req.body.temperatura;
-  const turbidez = req.body.turbidez;
-
-  let dados= {};
-  // Verificando se todos os dados necessários foram enviados
-  if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
-
-    const data = new Date();
-    dados=
-    {
-      "id":id,
-      "data":data,
-      "pH":pH,
-      "turbidez":turbidez,
-      "temperatura":temperatura
-    }
-    // Exibindo os dados recebidos
-    try{
-      const resposta = incluirDados(dados);
-
-        res.status(200).send(`
-        <p>Resposta ${resposta.status}</p>
-
-        <p>ID: ${id}</p>
-        <p><strong>Data:</strong> ${data}</p>
-        <p><strong>pH:</strong> ${pH}</p>
-        <p><strong>Temperatura:</strong> ${temperatura} C</p>
-        <p><strong>Turbidez:</strong> ${turbidez}</p>
-      `);
-
-
-
-
-    }catch(erro){
-      console.log(`Resposta: ${resposta.status}
-        Mensagem:${erro.menssage}
-        `);
-
-
-        res.status(200).send(`
-      <p><strong>pH:</strong> ${pH}</p>
-      <p><strong>Temperatura:</strong> ${temperatura} C</p>
-      <p><strong>Turbidez:</strong> ${turbidez}</p>
-    `);
-
-
-
-
-    }
-    // Respondendo com os dados recebidos em formato HTML
-    
-
-  } else {
-    // Se faltar algum dado, respondemos com erro 400
-    res.status(400).json({ error:  `Dados recebidos: pH = ${pH}, Temperatura = ${temperatura} C, Turbidez = ${turbidez}` });
-  }
-});*/
 
 // Iniciando o servidor
 /*
