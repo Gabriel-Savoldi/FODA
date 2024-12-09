@@ -21,11 +21,9 @@ app.get('/', (req, res) => {
   res.status(200).send(`<h1>API rodando corretamente</h1>`);
 });
 
-
-function obterDataAtual()
-{
+function obterDataAtual() {
   const dataAtual = new Date();
-  
+
   // Usando Intl.DateTimeFormat com o fuso horário correto
   const formatador = new Intl.DateTimeFormat('pt-BR', {
     timeZone: 'America/Sao_Paulo',
@@ -34,17 +32,27 @@ function obterDataAtual()
     day: '2-digit',
   });
 
+  // Formata a data com base no fuso horário especificado
   const partesData = formatador.formatToParts(dataAtual);
-  
-  // Encontrando as partes da data
-  const dia = partesData.find(e => e.type === 'day').value;
-  const mes = partesData.find(e => e.type === 'month').value;
-  const ano = partesData.find(e => e.type === 'year').value;
-  dia=dia-10;
-  ano=ano+15;
-  return `${ano}-${mes}-${dia}`;
-}
 
+  // Extrair as partes de ano, mês e dia
+  let dia = parseInt(partesData.find(e => e.type === 'day').value); // Converte o dia para número
+  let mes = parseInt(partesData.find(e => e.type === 'month').value); // Converte o mês para número
+  let ano = parseInt(partesData.find(e => e.type === 'year').value); // Converte o ano para número
+
+  // Subtrair 10 dias
+  dataAtual.setDate(dia - 10); // Subtrai 10 dias da data
+
+  // Adicionar 15 anos
+  dataAtual.setFullYear(ano + 15); // Adiciona 15 anos à data
+
+  // Atualizar as partes da data após as modificações
+  const novoDia = String(dataAtual.getDate()).padStart(2, '0'); // Recupera o novo dia
+  const novoMes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Recupera o novo mês
+  const novoAno = dataAtual.getFullYear(); // Recupera o novo ano
+
+  return `${novoAno}-${novoMes}-${novoDia}`;
+}
 
 app.post('/dados', async (req, res) => {
   const { id, pH, temperatura, turbidez } = req.body;
