@@ -51,7 +51,7 @@ app.post('/dados', (req, res) => {
         `)
 
         res.status(200).send(`
-        <p>Resposta ${resposta}</p>
+        <p>Resposta ${resposta.mensagem}</p>
       `);
 
 
