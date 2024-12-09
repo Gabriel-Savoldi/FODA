@@ -2,6 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import { incluirDados } from '../redux/dadosReducer.js';
+import { gravarDados } from '../redux/servicoBackend.js';
 // Criando o servidor Express
 const app = express();
 
@@ -45,7 +46,16 @@ app.post('/dados', (req, res) => {
     }
     // Exibindo os dados recebidos
     try{
-      const resposta = incluirDados(dados);
+      gravarDados(dados).then((resultado) => {
+        if (resultado.status) {
+          `<p><strong>data:</strong> ${data}</p>
+          <p><strong>pH:</strong> ${pH}</p>
+          <p><strong>Temperatura:</strong> ${temperatura} C</p>
+          <p><strong>Turbidez:</strong> ${turbidez}</p>`
+        } else {
+            toast.error(resultado.mensagem);
+        }
+    });
 
         res.status(200).send(`
         <p>Resposta ${resposta.status}</p>
