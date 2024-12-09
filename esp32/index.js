@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 // Rota para "/dados" (receber dados via POST)
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
-  const id = req.params.id;
+  const id = req.body.id;
   const pH = req.body.pH;
   const temperatura = req.body.temperatura;
   const turbidez = req.body.turbidez;
