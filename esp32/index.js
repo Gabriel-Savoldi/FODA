@@ -62,13 +62,17 @@ app.get('/', (req, res) => {
 
 function obterDataAtual() {
   const dataAtual = new Date();
+  
+  // Ajustando para o fuso horário de São Paulo
+  const fusoHorarioSP = new Date(dataAtual.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
 
-  const dia = String(dataAtual.getDate()).padStart(2, '0'); // Dia do mês
-  const mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Mês (1-12), ajustando porque getMonth() retorna de 0 a 11
-  const ano = dataAtual.getFullYear(); // Ano completo (4 dígitos)
+  const dia = String(fusoHorarioSP.getDate()).padStart(2, '0'); // Dia do mês
+  const mes = String(fusoHorarioSP.getMonth() + 1).padStart(2, '0'); // Mês (1-12), ajustando porque getMonth() retorna de 0 a 11
+  const ano = fusoHorarioSP.getFullYear(); // Ano completo (4 dígitos)
 
   return `${ano}-${mes}-${dia}`; // Retorna a data no formato yyyy-mm-dd
 }
+
 
 app.post('/dados', async (req, res) => {
   const { id, pH, temperatura, turbidez } = req.body;
