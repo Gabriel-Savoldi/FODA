@@ -24,15 +24,15 @@ app.get('/', (req, res) => {
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
   const pH = req.body.pH;
-  const Temperatura = req.body.Temperatura;
-  const Turbidez = req.body.Turbidez;
+  const temperatura = req.body.Temperatura;
+  const turbidez = req.body.Turbidez;
 
-  console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${Temperatura} C, Turbidez = ${Turbidez}`);
+  console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${temperatura} C, Turbidez = ${turbidez}`);
 
 
   let dados= {};
   // Verificando se todos os dados necessários foram enviados
-  if (pH !== undefined && Temperatura !== undefined && Turbidez !== undefined) {
+  if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
 
     const data = new Date();
     dados=
@@ -52,8 +52,8 @@ app.post('/dados', (req, res) => {
 
         <p><strong>data:</strong> ${data}</p>
         <p><strong>pH:</strong> ${pH}</p>
-      <p><strong>Temperatura:</strong> ${Temperatura} C</p>
-      <p><strong>Turbidez:</strong> ${Turbidez}</p>
+      <p><strong>Temperatura:</strong> ${temperatura} C</p>
+      <p><strong>Turbidez:</strong> ${turbidez}</p>
       `);
 
 
@@ -67,8 +67,8 @@ app.post('/dados', (req, res) => {
 
         res.status(200).send(`
       <p><strong>pH:</strong> ${pH}</p>
-      <p><strong>Temperatura:</strong> ${Temperatura} C</p>
-      <p><strong>Turbidez:</strong> ${Turbidez}</p>
+      <p><strong>Temperatura:</strong> ${temperatura} C</p>
+      <p><strong>Turbidez:</strong> ${turbidez}</p>
     `);
 
 
@@ -80,7 +80,7 @@ app.post('/dados', (req, res) => {
 
   } else {
     // Se faltar algum dado, respondemos com erro 400
-    res.status(400).json({ error:  `Dados recebidos: pH = ${pH}, Temperatura = ${Temperatura} C, Turbidez = ${Turbidez}` });
+    res.status(400).json({ error:  `Dados recebidos: pH = ${pH}, Temperatura = ${temperatura} C, Turbidez = ${turbidez}` });
   }
 });
 
