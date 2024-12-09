@@ -46,12 +46,12 @@ app.post('/dados', (req, res) => {
     // Exibindo os dados recebidos
     try{
       const resposta = incluirDados(dados);
-      console.log(`Resposta: ${resposta.status}
-        Mensagem:${resposta.mensagem}
-        `)
 
         res.status(200).send(`
         <p>Resposta ${resposta.mensagem}</p>
+        <p><strong>pH:</strong> ${pH}</p>
+      <p><strong>Temperatura:</strong> ${Temperatura} C</p>
+      <p><strong>Turbidez:</strong> ${Turbidez}</p>
       `);
 
 
