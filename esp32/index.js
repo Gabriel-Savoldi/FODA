@@ -49,6 +49,7 @@ app.post('/dados', (req, res) => {
         res.status(200).send(`
         <p>Resposta ${resposta.status}</p>
 
+        <p>ID: ${id}</p>
         <p><strong>Data:</strong> ${data}</p>
         <p><strong>pH:</strong> ${pH}</p>
         <p><strong>Temperatura:</strong> ${temperatura} C</p>
