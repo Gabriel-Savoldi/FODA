@@ -1,7 +1,7 @@
 // Importando o Express e o body-parser
 import express from 'express';
 import cors from 'cors';
-import { incluirDados, buscarDados } from '../redux/dadosReducer.js';
+import { incluirDados } from '../redux/dadosReducer.js';
 // Criando o servidor Express
 const app = express();
 
@@ -16,22 +16,8 @@ app.use(cors({
 
 // Rota padrão ("/")
 app.get('/', (req, res) => {
-
-  try {
-    // Aguarde a resposta se buscarDados for uma função assíncrona
-    const resposta = buscarDados();
-
-    console.log(`Resposta: ${resposta.status}
-      Mensagem: ${resposta.mensagem}`);
-
-    res.status(200).send(`
-      <h1>API rodando corretamente</h1>
-      <p>Resposta: ${resposta.mensagem}</p>
-    `);
-  } catch (erro) {
-    console.error('Erro ao buscar dados:', erro);
-    res.status(500).send({ error: 'Erro interno no servidor' });
-  }
+  
+  res.status(200).send(`<h1>API rodando corretamente</h1>`);
 });
 
 // Rota para "/dados" (receber dados via POST)
