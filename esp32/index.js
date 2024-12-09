@@ -22,23 +22,27 @@ app.get('/', (req, res) => {
 });
 
 
+
+function obterDataAtual()
+{
+  const dataAtual = new Date();
+  const fusoHorarioSP = dataAtual.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+  const dataAtualMaster = new Date(fusoHorarioSP);
+
+  const ano = dataAtualMaster.getFullYear(); // Obtém o ano (4 dígitos)
+  const mes = String(dataAtualMaster.getMonth() + 1).padStart(2, '0'); // Obtém o mês (1-12), ajustando para 1-12
+  const dia = String(dataAtualMaster.getDate()).padStart(2, '0'); // Obtém o dia (1-31)
+
+
+  return `${ano}-${mes}-${dia}`;
+}
+
+
+
 app.post('/dados', async (req, res) => {
   const { id, pH, temperatura, turbidez } = req.body;
 
   let dados = {};
-
-  function obterDataAtual() {
-    const dataAtual = new Date();
-
-    // Usando UTC para evitar problemas de fuso horário
-    const ano = dataAtual.getUTCFullYear(); 
-    const mes = String(dataAtual.getUTCMonth() + 1).padStart(2, '0');
-    const dia = String(dataAtual.getUTCDate()).padStart(2, '0');
-
-    return `${ano}-${mes}-${dia}`;
-}
-
-
   // Validando se todos os dados foram enviados
   if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
     const data = obterDataAtual();
