@@ -58,7 +58,7 @@ function obterDataAtual() {
   const novoAno = novaData.getFullYear(); // Recupera o novo ano
 
   return `${novoAno}-${novoMes}-${novoDia}`;
-}*/
+}
 
 
 app.post('/dados', async (req, res) => {
@@ -67,8 +67,8 @@ app.post('/dados', async (req, res) => {
   let dados = {};
   // Validando se todos os dados foram enviados
   if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
-    const data = new Date();
-    data = data.toLocaleDateString();
+    const data = obterDataAtual();
+
     
     dados = {
       id,
