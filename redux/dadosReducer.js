@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { gravarDados } from "./servicoBackend";
+import { gravarDados } from "./servicoBackend.js";
 import { ESTADO } from "./estados";
 
 export const buscarProdutos = createAsyncThunk('buscarProdutos', async ()=>{

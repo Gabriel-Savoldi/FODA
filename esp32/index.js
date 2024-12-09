@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
 
 
 
+//cu
+
+
+
 // Rota para "/dados" (receber dados via POST)
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
