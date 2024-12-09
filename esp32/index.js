@@ -1,7 +1,7 @@
 // Importando o Express e o body-parser
 import express from 'express';
 import cors from 'cors';
-import gravarDados from "./servicoBackend.js";
+import gravarDados from "../redux/servicoBackend.js";
 // Criando o servidor Express
 const app = express();
 
