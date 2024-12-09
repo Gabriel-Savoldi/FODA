@@ -1,7 +1,7 @@
 // Importando o Express e o body-parser
 import express from 'express';
 import cors from 'cors';
-import { incluirDados } from '../redux/dadosReducer.js';
+import { incluirDados, buscarDados } from '../redux/dadosReducer.js';
 // Criando o servidor Express
 const app = express();
 
@@ -16,6 +16,16 @@ app.use(cors({
 
 // Rota padrão ("/")
 app.get('/', (req, res) => {
+
+    const resposta = buscarDados(dados);
+    console.log(`Resposta: ${resposta.status}
+      Mensagem:${resposta.mensagem}
+      `)
+
+      res.status(200).send(`
+      <p>Resposta ${resposta}</p>
+    `);
+  
   res.status(200).send(`<h1>API rodando corretamente</h1>`);
 });
 
