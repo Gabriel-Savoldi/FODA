@@ -24,8 +24,8 @@ app.get('/', (req, res) => {
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
   const pH = req.body.pH;
-  const temperatura = req.body.Temperatura;
-  const turbidez = req.body.Turbidez;
+  const temperatura = req.body.temperatura;
+  const turbidez = req.body.turbidez;
 
   console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${temperatura} C, Turbidez = ${turbidez}`);
 
