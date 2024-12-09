@@ -1,7 +1,7 @@
 const urlBase = 'https://projeto-integrador-amber.vercel.app/dados';
 
 
-export async function gravarDados(dados){
+export  default async function gravarDados(dados){
     const resposta = await fetch(urlBase,{
         'method':"POST",
         'headers': { 
