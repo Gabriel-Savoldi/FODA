@@ -67,8 +67,8 @@ app.post('/dados', async (req, res) => {
   let dados = {};
   // Validando se todos os dados foram enviados
   if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
-    const data = obterDataAtual();
-
+    const data = new Date();
+    data = data.toLocaleDateString();
     
     dados = {
       id,
