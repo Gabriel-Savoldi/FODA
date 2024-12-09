@@ -62,15 +62,20 @@ app.get('/', (req, res) => {
 
 function obterDataAtual() {
   const dataAtual = new Date();
-  
-  // Ajustando para o fuso horário de São Paulo
-  const fusoHorarioSP = new Date(dataAtual.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }));
 
-  const dia = String(fusoHorarioSP.getDate()).padStart(2, '0'); // Dia do mês
-  const mes = String(fusoHorarioSP.getMonth() + 1).padStart(2, '0'); // Mês (1-12), ajustando porque getMonth() retorna de 0 a 11
-  const ano = fusoHorarioSP.getFullYear(); // Ano completo (4 dígitos)
+  // Formatar a data no fuso horário de São Paulo sem problemas de conversão
+  const dataFormatada = new Intl.DateTimeFormat('pt-BR', { 
+    timeZone: 'America/Sao_Paulo', 
+    day: '2-digit', 
+    month: '2-digit', 
+    year: 'numeric' 
+  }).format(dataAtual);
 
-  return `${ano}-${mes}-${dia}`; // Retorna a data no formato yyyy-mm-dd
+  // A data formatada será no formato "dd/mm/yyyy"
+  const [dia, mes, ano] = dataFormatada.split('/');
+
+  // Retorna a data no formato "yyyy-mm-dd"
+  return `${ano}-${mes}-${dia}`;
 }
 
 
