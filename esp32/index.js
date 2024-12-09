@@ -27,10 +27,21 @@ app.post('/dados', async (req, res) => {
 
   let dados = {};
 
+  function obterDataAtual() {
+    const dataAtual = new Date();
+
+    const ano = dataAtual.getFullYear(); // Obtém o ano (4 dígitos)
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Obtém o mês (1-12), ajustando para 1-12
+    const dia = String(dataAtual.getDate()).padStart(2, '0'); // Obtém o dia (1-31)
+
+    return `${ano}-${mes}-${dia}`; // Retorna no formato "yyyy-mm-dd"
+  }
 
   // Validando se todos os dados foram enviados
   if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
-    const data = new Date();
+    const data = obterDataAtual();
+
+    
     dados = {
       id,
       data,
