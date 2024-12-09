@@ -63,7 +63,7 @@ app.post('/dados', (req, res) => {
 
   } else {
     // Se faltar algum dado, respondemos com erro 400
-    res.status(400).json({ error: 'Dados faltando' });
+    res.status(400).json({ error:  `Dados recebidos: pH = ${pH}, Temperatura = ${Temperatura} C, Turbidez = ${Turbidez}` });
   }
 });
 
