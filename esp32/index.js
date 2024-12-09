@@ -17,16 +17,21 @@ app.use(cors({
 // Rota padrão ("/")
 app.get('/', (req, res) => {
 
-    const resposta = buscarDados(dados);
-    console.log(`Resposta: ${resposta.status}
-      Mensagem:${resposta.mensagem}
-      `)
+  try {
+    // Aguarde a resposta se buscarDados for uma função assíncrona
+    const resposta = buscarDados();
 
-      res.status(200).send(`
-      <p>Resposta ${resposta}</p>
+    console.log(`Resposta: ${resposta.status}
+      Mensagem: ${resposta.mensagem}`);
+
+    res.status(200).send(`
+      <h1>API rodando corretamente</h1>
+      <p>Resposta: ${resposta.mensagem}</p>
     `);
-  
-  res.status(200).send(`<h1>API rodando corretamente</h1>`);
+  } catch (erro) {
+    console.error('Erro ao buscar dados:', erro);
+    res.status(500).send({ error: 'Erro interno no servidor' });
+  }
 });
 
 // Rota para "/dados" (receber dados via POST)
