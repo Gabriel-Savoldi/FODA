@@ -24,12 +24,10 @@ app.get('/', (req, res) => {
 // Rota para "/dados" (receber dados via POST)
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
+  const id = req.params.id;
   const pH = req.body.pH;
   const temperatura = req.body.temperatura;
   const turbidez = req.body.turbidez;
-
-  console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${temperatura} C, Turbidez = ${turbidez}`);
-
 
   let dados= {};
   // Verificando se todos os dados necessários foram enviados
@@ -38,7 +36,7 @@ app.post('/dados', (req, res) => {
     const data = new Date();
     dados=
     {
-      "id":0,
+      "id":id,
       "data":data,
       "pH":pH,
       "turbidez":turbidez,
