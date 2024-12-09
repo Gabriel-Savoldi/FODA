@@ -46,7 +46,7 @@ app.post('/dados', (req, res) => {
     }
     // Exibindo os dados recebidos
     try{
-      const resposta = gravarDados(dados);
+      res = incluirDados(dados);
 
         res.status(200).send(`
         <p>Resposta ${resposta.status}</p>
