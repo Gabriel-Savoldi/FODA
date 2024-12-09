@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
   res.status(200).send(`<h1>API rodando corretamente</h1>`);
 });
 
+
 app.post('/dados', async (req, res) => {
   const { id, pH, temperatura, turbidez } = req.body;
 
@@ -30,7 +31,6 @@ app.post('/dados', async (req, res) => {
   // Validando se todos os dados foram enviados
   if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
     const data = new Date();
-    data = data.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
     dados = {
       id,
       data,
