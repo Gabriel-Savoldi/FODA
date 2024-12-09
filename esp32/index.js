@@ -46,16 +46,7 @@ app.post('/dados', (req, res) => {
     }
     // Exibindo os dados recebidos
     try{
-      gravarDados(dados).then((resultado) => {
-        if (resultado.status) {
-          `<p><strong>data:</strong> ${data}</p>
-          <p><strong>pH:</strong> ${pH}</p>
-          <p><strong>Temperatura:</strong> ${temperatura} C</p>
-          <p><strong>Turbidez:</strong> ${turbidez}</p>`
-        } else {
-            toast.error(resultado.mensagem);
-        }
-    });
+      const resposta = gravarDados(dados);
 
         res.status(200).send(`
         <p>Resposta ${resposta.status}</p>
