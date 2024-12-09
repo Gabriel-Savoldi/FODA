@@ -48,12 +48,12 @@ app.post('/dados', (req, res) => {
       const resposta = incluirDados(dados);
 
         res.status(200).send(`
-        <p>Resposta ${resposta.mensagem}</p>
+        <p>Resposta ${resposta.status}</p>
 
         <p><strong>data:</strong> ${data}</p>
         <p><strong>pH:</strong> ${pH}</p>
-      <p><strong>Temperatura:</strong> ${temperatura} C</p>
-      <p><strong>Turbidez:</strong> ${turbidez}</p>
+        <p><strong>Temperatura:</strong> ${temperatura} C</p>
+        <p><strong>Turbidez:</strong> ${turbidez}</p>
       `);
 
 
