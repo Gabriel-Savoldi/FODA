@@ -1,4 +1,4 @@
-const urlBase = 'https://projeto-integrador-amber.vercel.app/dados';
+const urlBase = 'https://api-gamma-sandy.vercel.app/dados';
 
 
 export  async function gravarDados(dados){
