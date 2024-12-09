@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   res.status(200).send(`<h1>API rodando corretamente</h1>`);
 });
 
-function obterDataAtual() {
+/*function obterDataAtual() {
   const dataAtual = new Date();
 
   // Usando Intl.DateTimeFormat com o fuso horário correto
@@ -58,8 +58,17 @@ function obterDataAtual() {
   const novoAno = novaData.getFullYear(); // Recupera o novo ano
 
   return `${novoAno}-${novoMes}-${novoDia}`;
-}
+}*/
 
+function obterDataAtual() {
+  const dataAtual = new Date();
+
+  const dia = String(dataAtual.getDate()).padStart(2, '0'); // Dia do mês
+  const mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Mês (1-12), ajustando porque getMonth() retorna de 0 a 11
+  const ano = dataAtual.getFullYear(); // Ano completo (4 dígitos)
+
+  return `${ano}-${mes}-${dia}`; // Retorna a data no formato yyyy-mm-dd
+}
 
 app.post('/dados', async (req, res) => {
   const { id, pH, temperatura, turbidez } = req.body;
@@ -67,8 +76,7 @@ app.post('/dados', async (req, res) => {
   let dados = {};
   // Validando se todos os dados foram enviados
   if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
-    const data = new Date();
-    data = data.toLocaleDateString();
+    const data = obterDataAtual();
     
     dados = {
       id,
