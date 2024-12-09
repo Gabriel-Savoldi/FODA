@@ -1,7 +1,7 @@
 // Importando o Express e o body-parser
 import express from 'express';
 import cors from 'cors';
-import { incluirDados } from '../redux/dadosReducer';
+import { incluirDados } from '../redux/dadosReducer.js';
 // Criando o servidor Express
 const app = express();
 
