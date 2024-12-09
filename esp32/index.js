@@ -22,21 +22,27 @@ app.get('/', (req, res) => {
 });
 
 
-
 function obterDataAtual()
 {
   const dataAtual = new Date();
-  const fusoHorarioSP = dataAtual.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
-  const dataAtualMaster = new Date(fusoHorarioSP);
+  
+  // Usando Intl.DateTimeFormat com o fuso horário correto
+  const formatador = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
 
-  const ano = dataAtualMaster.getFullYear(); // Obtém o ano (4 dígitos)
-  const mes = String(dataAtualMaster.getMonth() + 1).padStart(2, '0'); // Obtém o mês (1-12), ajustando para 1-12
-  const dia = String(dataAtualMaster.getDate()).padStart(2, '0'); // Obtém o dia (1-31)
-
+  const partesData = formatador.formatToParts(dataAtual);
+  
+  // Encontrando as partes da data
+  const dia = partesData.find(e => e.type === 'day').value;
+  const mes = partesData.find(e => e.type === 'month').value;
+  const ano = partesData.find(e => e.type === 'year').value;
 
   return `${ano}-${mes}-${dia}`;
 }
-
 
 
 app.post('/dados', async (req, res) => {
