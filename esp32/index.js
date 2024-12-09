@@ -26,6 +26,9 @@ app.post('/dados', (req, res) => {
   const Temperatura = req.body.Temperatura;
   const Turbidez = req.body.Turbidez;
 
+  console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${Temperatura} C, Turbidez = ${Turbidez}`);
+
+
   let dados= {};
   // Verificando se todos os dados necessários foram enviados
   if (pH !== undefined && Temperatura !== undefined && Turbidez !== undefined) {
@@ -40,7 +43,6 @@ app.post('/dados', (req, res) => {
       "temperatura":Temperatura
     }
     // Exibindo os dados recebidos
-    console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${Temperatura} C, Turbidez = ${Turbidez}`);
     try{
       const resposta = incluirDados(dados);
       console.log(`Resposta: ${resposta.status}
