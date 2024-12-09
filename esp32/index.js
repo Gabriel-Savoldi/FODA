@@ -19,17 +19,13 @@ app.get('/', (req, res) => {
   res.status(200).send(`<h1>API rodando corretamente</h1>`);
 });
 
-
-
-
-//cu
-
-
-
 // Rota para "/dados" (receber dados via POST)
 app.post('/dados', (req, res) => {
   // Recebendo os dados enviados no corpo da requisição
-  const { pH, Temperatura, Turbidez } = req.body;
+  const pH = req.body.pH;
+  const Temperatura = req.body.Temperatura;
+  const Turbidez = req.body.Turbidez;
+
   let dados= {};
   // Verificando se todos os dados necessários foram enviados
   if (pH !== undefined && Temperatura !== undefined && Turbidez !== undefined) {
@@ -43,10 +39,6 @@ app.post('/dados', (req, res) => {
       "turbidez":Turbidez,
       "temperatura":Temperatura
     }
-    
-
-
-
     // Exibindo os dados recebidos
     console.log(`Dados recebidos: pH = ${pH}, Temperatura = ${Temperatura} C, Turbidez = ${Turbidez}`);
     try{
