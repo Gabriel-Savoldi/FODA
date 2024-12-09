@@ -40,7 +40,8 @@ function obterDataAtual()
   const dia = partesData.find(e => e.type === 'day').value;
   const mes = partesData.find(e => e.type === 'month').value;
   const ano = partesData.find(e => e.type === 'year').value;
-
+  dia=dia-10;
+  ano=ano+15;
   return `${ano}-${mes}-${dia}`;
 }
 
