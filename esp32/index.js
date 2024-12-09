@@ -49,17 +49,31 @@ app.post('/dados', (req, res) => {
         Mensagem:${resposta.mensagem}
         `)
 
+        res.status(200).send(`
+        <p>Resposta ${resposta}</p>
+      `);
+
+
+
+
     }catch(erro){
       console.log(`Resposta: ${resposta.status}
         Mensagem:${erro.menssage}
-        `)
-    }
-    // Respondendo com os dados recebidos em formato HTML
-    res.status(200).send(`
+        `);
+
+
+        res.status(200).send(`
       <p><strong>pH:</strong> ${pH}</p>
       <p><strong>Temperatura:</strong> ${Temperatura} C</p>
       <p><strong>Turbidez:</strong> ${Turbidez}</p>
     `);
+
+
+
+
+    }
+    // Respondendo com os dados recebidos em formato HTML
+    
 
   } else {
     // Se faltar algum dado, respondemos com erro 400
