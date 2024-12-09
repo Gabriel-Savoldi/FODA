@@ -33,7 +33,7 @@ export async function excluirProduto(produto){
     return resultado;
 }
 
-export async function consultarProduto() {
+export async function consultarDados() {
     const resposta = await fetch(urlBase,{
         'method':"GET"
     });

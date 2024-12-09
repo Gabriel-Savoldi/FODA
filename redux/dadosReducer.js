@@ -3,16 +3,16 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { gravarDados } from "./servicoBackend.js";
 import ESTADO from "./estados.js";
 
-export const buscarProdutos = createAsyncThunk('buscarProdutos', async ()=>{
+export const buscarDados = createAsyncThunk('buscarDados', async ()=>{
     //lista de produtos
-    const resultado = await consultarProduto();
+    const resultado = await consultarDados();
     //se for um array/lista a consulta funcionou
     try {
         if (Array.isArray(resultado)){
             return {
                 "status":true,
                 "mensagem":"Produtos recuperados com sucesso",
-                "listaDeProdutos":resultado
+                "listaDeDados":resultado
             }
         }
         else
@@ -20,7 +20,7 @@ export const buscarProdutos = createAsyncThunk('buscarProdutos', async ()=>{
             return {
                 "status":false,
                 "mensagem":"Erro ao recuperar os produtos do backend.",
-                "listaDeProdutos":[]
+                "listaDeDados":[]
             }
         }
     }
@@ -28,7 +28,7 @@ export const buscarProdutos = createAsyncThunk('buscarProdutos', async ()=>{
         return {
             "status":false,
             "mensagem":"Erro: " + erro.message,
-            "listaDeProdutos":[]
+            "listaDeDados":[]
         }
     }
 });
@@ -75,6 +75,25 @@ const dadosReducer = createSlice({
           } 
         })
         .addCase(incluirDados.rejected, (state, action) =>{
+            state.estado=ESTADO.ERRO;
+            state.mensagem = action.payload.mensagem;
+            state.listaDeDados=action.payload.listaDeDados;
+        })
+        .addCase(buscarDados.pending, (state, action) =>{
+            state.estado=ESTADO.PENDENTE
+            state.mensagem="Processando requisição (incluindo dados)"
+        })
+        .addCase(buscarDados.fulfilled, (state, action) =>{
+          if (action.payload.status){
+            state.estado=ESTADO.OCIOSO;
+            state.mensagem=action.payload.mensagem;
+          } 
+          else{
+            state.estado=ESTADO.ERRO;
+            state.mensagem = action.payload.mensagem;
+          } 
+        })
+        .addCase(buscarDados.rejected, (state, action) =>{
             state.estado=ESTADO.ERRO;
             state.mensagem = action.payload.mensagem;
             state.listaDeDados=action.payload.listaDeDados;
