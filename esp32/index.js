@@ -30,12 +30,14 @@ app.post('/dados', async (req, res) => {
   function obterDataAtual() {
     const dataAtual = new Date();
 
-    const ano = dataAtual.getFullYear(); // Obtém o ano (4 dígitos)
-    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Obtém o mês (1-12), ajustando para 1-12
-    const dia = String(dataAtual.getDate()).padStart(2, '0'); // Obtém o dia (1-31)
+    // Usando UTC para evitar problemas de fuso horário
+    const ano = dataAtual.getUTCFullYear(); 
+    const mes = String(dataAtual.getUTCMonth() + 1).padStart(2, '0');
+    const dia = String(dataAtual.getUTCDate()).padStart(2, '0');
 
-    return `${ano}-${mes}-${dia}`; // Retorna no formato "yyyy-mm-dd"
-  }
+    return `${ano}-${mes}-${dia}`;
+}
+
 
   // Validando se todos os dados foram enviados
   if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
