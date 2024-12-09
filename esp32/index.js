@@ -40,8 +40,8 @@ app.post('/dados', (req, res) => {
       "id":0,
       "data":data,
       "pH":pH,
-      "turbidez":Turbidez,
-      "temperatura":Temperatura
+      "turbidez":turbidez,
+      "temperatura":temperatura
     }
     // Exibindo os dados recebidos
     try{
