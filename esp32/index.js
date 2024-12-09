@@ -26,9 +26,11 @@ app.post('/dados', async (req, res) => {
 
   let dados = {};
 
+
   // Validando se todos os dados foram enviados
   if (pH !== undefined && temperatura !== undefined && turbidez !== undefined) {
     const data = new Date();
+    data = data.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
     dados = {
       id,
       data,
