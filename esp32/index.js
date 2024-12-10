@@ -41,7 +41,7 @@ function obterDataAtual() {
   let ano = parseInt(partesData.find(e => e.type === 'year').value); // Converte o ano para número
 
   // Subtrair 10 dias
-  dia -= 19;
+  dia -= 9;
 
   // Adicionar 1 mês (lembrando que o mês começa em 0 no JavaScript)
   mes += 1;
