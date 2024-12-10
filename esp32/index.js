@@ -50,7 +50,7 @@ function obterDataAtual() {
   ano += 10;
 
   // Criar um novo objeto Date com os valores ajustados
-  const novaData = new Date(ano - 5, mes - 2, dia - 22);  // O mês precisa ser ajustado para a base 0
+  const novaData = new Date(ano - 5, mes, dia - 26);  // O mês precisa ser ajustado para a base 0
 
   // Recuperando a data ajustada
   const novoDia = String(novaData.getDate()).padStart(2, '0'); // Recupera o novo dia
