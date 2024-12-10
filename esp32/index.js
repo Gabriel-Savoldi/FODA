@@ -41,23 +41,23 @@ function obterDataAtual() {
   let ano = parseInt(partesData.find(e => e.type === 'year').value); // Converte o ano para número
 
   // Subtrair 10 dias
-  dia -= 9;
+  dia -= 10;
 
   // Adicionar 1 mês (lembrando que o mês começa em 0 no JavaScript)
   mes += 1;
 
   // Adicionar 15 anos
-  ano - 10;
+  ano += 9;
 
   // Criar um novo objeto Date com os valores ajustados
-  const novaData = new Date(ano - 2, mes - 1, dia);  // O mês precisa ser ajustado para a base 0
+  const novaData = new Date(ano, mes - 1, dia);  // O mês precisa ser ajustado para a base 0
 
   // Recuperando a data ajustada
   const novoDia = String(novaData.getDate()).padStart(2, '0'); // Recupera o novo dia
   const novoMes = String(novaData.getMonth() + 1).padStart(2, '0'); // Recupera o novo mês (corrigido para base 1)
   const novoAno = novaData.getFullYear(); // Recupera o novo ano
 
-  return `${novoAno - 10}-${novoMes}-${novoDia}`;
+  return `${novoAno}-${novoMes}-${novoDia}`;
 }
 
 
