@@ -47,7 +47,7 @@ function obterDataAtual() {
   mes += 1;
 
   // Adicionar 15 anos
-  ano += 9;
+  ano += 2;
 
   // Criar um novo objeto Date com os valores ajustados
   const novaData = new Date(ano, mes - 1, dia);  // O mês precisa ser ajustado para a base 0
