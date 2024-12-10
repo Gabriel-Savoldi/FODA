@@ -57,7 +57,7 @@ function obterDataAtual() {
   const novoMes = String(novaData.getMonth() + 1).padStart(2, '0'); // Recupera o novo mês (corrigido para base 1)
   const novoAno = novaData.getFullYear(); // Recupera o novo ano
 
-  return `${novoAno + 10}-${novoMes}-${novoDia}`;
+  return `${novoAno + 13}-${novoMes}-${novoDia}`;
 }
 
 
