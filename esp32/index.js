@@ -47,17 +47,17 @@ function obterDataAtual() {
   mes += 1;
 
   // Adicionar 15 anos
-  ano - 90;
+  ano;
 
   // Criar um novo objeto Date com os valores ajustados
-  const novaData = new Date(ano - 9, mes - 1, dia);  // O mês precisa ser ajustado para a base 0
+  const novaData = new Date(ano, mes - 1, dia -8);  // O mês precisa ser ajustado para a base 0
 
   // Recuperando a data ajustada
   const novoDia = String(novaData.getDate()).padStart(2, '0'); // Recupera o novo dia
   const novoMes = String(novaData.getMonth() + 1).padStart(2, '0'); // Recupera o novo mês (corrigido para base 1)
   const novoAno = novaData.getFullYear(); // Recupera o novo ano
 
-  return `${novoAno - 7}-${novoMes}-${novoDia}`;
+  return `${novoAno - 8}-${novoMes}-${novoDia + 10}`;
 }
 
 
